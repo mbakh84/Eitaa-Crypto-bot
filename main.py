@@ -1,14 +1,26 @@
-import requests
+from coin_class import coin
+from crypto_API_connection import connect_to_API,request_for_price
 
+Key = '7f0c0909-32ae-466d-ad91-e58b46a31508'
+url = 'https://pro-api.coinmarketcap.com/v2/tools/price-conversion'
 
-TOKEN = "bot289853:8123ecc3-5827-4c76-9f8a-3ba47a7eeb7c"
-CHANNEL_ID = "@test_for_ebot"
+session = connect_to_API(Key, url)
 
+BTC = coin(0, "Bitcoin", "BTC")
+ETH = coin(0, "Ethereum", "ETH")
+BNB = coin(0, "BNB", "BNB")
+SOL = coin(0, "Solana", "SOL")
+XRP = coin(0, "XRP", "XRP")
 
-url = f"https://eitaayar.ir/api/{TOKEN}/sendMessage"
+coin_list = [BTC, ETH, BNB, SOL, XRP]
 
-params = {'chat_id': CHANNEL_ID,'text': "its a message from bot. testing..."}
-requests.post(url, params=params)
+try:
+    for crypto in coin_list:
+        crypto.price = request_for_price(crypto, session, url)
+        print(f'{crypto.name}    {crypto.price}')
+  
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+    print(e)
 
 # def send_message(message):
 #     try_counter = 0
