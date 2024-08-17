@@ -3,7 +3,7 @@ from crypto_API_connection import connect_to_API,request_for_data
 from eita_API_connection import send_message,issue_message
 from time import sleep
 
-Key = '7f0c0909-32ae-466d-ad91-e58b46a31508'
+Key = '***'
 auth_url = 'https://pro-api.coinmarketcap.com'
 price_url = 'https://pro-api.coinmarketcap.com/v2/tools/price-conversion'
 
