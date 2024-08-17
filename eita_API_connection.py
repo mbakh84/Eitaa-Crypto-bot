@@ -3,7 +3,7 @@ import requests
 
 def send_message(message:str):
     
-    TOKEN = "bot289853:8123ecc3-5827-4c76-9f8a-3ba47a7eeb7c"
+    TOKEN = "***"
     CHANNEL_username = "Crypto_Live"
     url = f"https://eitaayar.ir/api/{TOKEN}/sendMessage"
 
@@ -26,7 +26,7 @@ def send_message(message:str):
         return 0
 
 def issue_message():
-    TOKEN = "bot289853:8123ecc3-5827-4c76-9f8a-3ba47a7eeb7c"
+    TOKEN = "***"
     CHANNEL_username = "Crypto_Live"
     url = f"https://eitaayar.ir/api/{TOKEN}/sendMessage"
 
