@@ -1,5 +1,4 @@
-from requests import Request, Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+from requests import Session
 from coin_class import coin
 
 def connect_to_API(Key:str,url:str):
@@ -12,13 +11,20 @@ def connect_to_API(Key:str,url:str):
     session.headers.update(headers)
     return session
 
-def request_for_price(crypto:coin, session:Session, url:str):
+def request_for_data(crypto:coin, session:Session, price_url:str):
+
+    #request for current price
     parameters = {
         'amount':'1',
         'symbol': crypto.symbol,
         }
-    response = session.get(url, params=parameters)
+    response = session.get(price_url, params=parameters)
     raw_data = response.json()['data']
     for item in raw_data:
         if item['name'] == crypto.name:
-            return float(item['quote']['USD']['price'])
+            return (round(float(item['quote']['USD']['price']), 3))
+
+    #calculate open price
+    # if crypto.open == 0:
+    #     data['open'] = data['price']
+    #     return data
