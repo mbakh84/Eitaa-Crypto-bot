@@ -12,8 +12,6 @@ def connect_to_API(Key:str,url:str):
     return session
 
 def request_for_data(crypto:coin, session:Session, price_url:str):
-
-    #request for current price
     parameters = {
         'amount':'1',
         'symbol': crypto.symbol,
@@ -23,8 +21,3 @@ def request_for_data(crypto:coin, session:Session, price_url:str):
     for item in raw_data:
         if item['name'] == crypto.name:
             return (round(float(item['quote']['USD']['price']), 3))
-
-    #calculate open price
-    # if crypto.open == 0:
-    #     data['open'] = data['price']
-    #     return data
